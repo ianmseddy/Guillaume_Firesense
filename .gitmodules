@@ -7,3 +7,6 @@
 [submodule "modules/Biomass_speciesData"]
 	path = modules/Biomass_speciesData
 	url = git@github.com:PredictiveEcology/Biomass_speciesData.git
+[submodule "modules/studyArea"]
+	path = modules/studyArea
+	url = https://github.com/ianmseddy/studyArea.git
