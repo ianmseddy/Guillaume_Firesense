@@ -23,13 +23,7 @@ raster::rasterOptions(default = TRUE)
 opts <- options(
   "LandR.assertions" = FALSE,
   "LandR.verbose" = 1,
-  "rasterMaxMemory" = maxMemory,
   "rasterTmpDir" = scratchDir,
-  "reproducible.cachePath" = file.path(scratchDir, "cache"),
-  "reproducible.cacheSaveFormat" = cacheFormat,
-  "reproducible.conn" = cacheDBconn,
-  "reproducible.destinationPath" = normPath(defaultPaths[["inputPath"]]),
-  "reproducible.inputPaths" = userInputPaths,
   "reproducible.nThreads" = 2,
   "reproducible.overwrite" = TRUE,
   "reproducible.polygonShortcut" = FALSE,

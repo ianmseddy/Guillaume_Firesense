@@ -7,7 +7,17 @@ default:
     scratchdir: "/tmp/scratch"
   plot: true
   slackchannel: ""
-
 production:
   batchmode: true
   plot: false
+ian:
+  studyarea: "guillaume"
+  googleuser: "ianmseddy@gmail.com"
+  paths:
+    cachedir: "cache"
+    scratchdir: "D:/temp"
+  userequire: true
+  usecloud: false
+  usememoise: false 
+  useprerun: true
+    
