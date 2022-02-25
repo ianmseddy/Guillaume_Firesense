@@ -1,18 +1,20 @@
 ## NOTE: 07a-dataPrep_2001.R and 07b-dataPrep_2011.R need to be run before this script
 
-source("05-google-ids.R")
-newGoogleIDs <- gdriveSims[["fSsimDataPrep"]] == ""
+# source("05-google-ids.R")
+# newGoogleIDs <- gdriveSims[["fSsimDataPrep"]] == ""
 
 fSdataPrepParams <- list(
   "fireSense_dataPrepFit" = list(
     ".studyAreaName" = studyAreaName,
-    "fireYears" = 2001:2019, # this will be fixed to post kNN only
-    "sppEquivCol" = simOutPreamble$sppEquivCol,
+    "fireYears" = 2001:2020, # this will be fixed to post kNN only
+    "sppEquivCol" = sppEquivCol,
     "useCentroids" = TRUE,
+    "usePCA" = FALSE,
     ".useCache" = ".inputObjects",
     "whichModulesToPrepare" = c("fireSense_IgnitionFit", "fireSense_EscapeFit", "fireSense_SpreadFit")
   )
 )
+
 
 simOutPreamble$rasterToMatch <- raster::mask(simOutPreamble$rasterToMatch, simOutPreamble$studyArea)
 fSdataPrepObjects <- list(
@@ -45,7 +47,7 @@ if (isTRUE(usePrerun)) {
     objects = fSdataPrepObjects,
     paths = dataPrepPaths,
     modules = "fireSense_dataPrepFit",
-    .plots = NA,
+    .plots = NULL,
     #useCloud = useCloudCache,
     #cloudFolderID = cloudCacheFolderID,
     userTags = c("fireSense_dataPrepFit", studyAreaName)

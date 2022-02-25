@@ -15,9 +15,9 @@ ian:
   googleuser: "ianmseddy@gmail.com"
   paths:
     cachedir: "cache"
-    scratchdir: "D:/temp"
   userequire: true
   usecloud: false
   usememoise: false 
   useprerun: true
+  reproduciblealgorithm: 1
     

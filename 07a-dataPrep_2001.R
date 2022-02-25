@@ -2,7 +2,8 @@
 do.call(setPaths, dataPrepPaths)
 
 source("05-google-ids.R")
-newGoogleIDs <- gdriveSims[["biomassMaps2001"]] == ""
+# newGoogleIDs <- gdriveSims[["biomassMaps2001"]] == ""
+sppEquivCol <- "LandR"
 
 dataPrep <- list(
   subsetDataBiomassModel = 50,
@@ -25,40 +26,39 @@ dataPrepParams2001 <- list(
       quote(LandR::speciesTableUpdate(sim$species, sim$speciesTable, sim$sppEquiv, P(sim)$sppEquivCol)),
       quote(LandR::updateSpeciesTable(sim$species, sim$speciesParams))
     ),
-    "sppEquivCol" = simOutPreamble$sppEquivCol,
+    "sppEquivCol" = sppEquivCol,
     "subsetDataBiomassModel" = dataPrep$subsetDataBiomassModel,
     "useCloudCacheForStats" = useCloudCache,
     ".studyAreaName" = paste0(studyAreaName, 2001),
     ".useCache" = c(".inputObjects", "init")
   ),
   Biomass_speciesData = list(
-    "sppEquivCol" = simOutPreamble$sppEquivCol,
+    "sppEquivCol" = sppEquivCol,
     ".studyAreaName" = paste0(studyAreaName, 2001)
   )
 )
 
-dataPrepOutputs2001 <- data.frame(
-  objectName = c("cohortData",
-                 "pixelGroupMap",
-                 "speciesLayers",
-                 "standAgeMap",
-                 "rawBiomassMap"),
-  saveTime = 2001,
-  file = paste0(studyAreaName, "_",
-                c("cohortData2001_fireSense.rds",
-                  "pixelGroupMap2001_fireSense.rds",
-                  "speciesLayers2001_fireSense.rds",
-                  "standAgeMap2001_borealDataPrep.rds",
-                  "rawBiomassMap2001_borealDataPrep.rds"))
-)
-
+# dataPrepOutputs2001 <- data.frame(
+#   objectName = c("cohortData",
+#                  "pixelGroupMap",
+#                  "speciesLayers",
+#                  "standAgeMap",
+#                  "rawBiomassMap"),
+#   saveTime = 2001,
+#   file = paste0(studyAreaName, "_",
+#                 c("cohortData2001_fireSense.rds",
+#                   "pixelGroupMap2001_fireSense.rds",
+#                   "speciesLayers2001_fireSense.rds",
+#                   "standAgeMap2001_borealDataPrep.rds",
+#                   "rawBiomassMap2001_borealDataPrep.rds"))
+# )
 dataPrepObjects <- list("rasterToMatch" = simOutPreamble$rasterToMatch,
-                        "rasterToMatchLarge" = simOutPreamble$rasterToMatchLarge,
-                        "sppColorVect" = simOutPreamble$sppColorVect,
-                        "sppEquiv" = simOutPreamble$sppEquiv,
+
+                        "rasterToMatchLarge" = simOutPreamble$rasterToMatch,
+                        "studyAreaLarge" = simOutPreamble$studyArea,
                         "studyArea" = simOutPreamble$studyArea,
-                        "studyAreaLarge" = simOutPreamble$studyAreaLarge,
-                        "studyAreaReporting" = simOutPreamble$studyAreaReporting)
+                        "sppEquiv" = simOutPreamble$sppEquiv,
+                        "sppColorVect" = simOutPreamble$sppColors)
 
 fbiomassMaps2001 <- file.path(Paths$outputPath, paste0("biomassMaps2001_", studyAreaName, ".qs"))
 if (isTRUE(usePrerun)) {
@@ -74,10 +74,11 @@ if (isTRUE(usePrerun)) {
     modules = list("Biomass_speciesData", "Biomass_borealDataPrep"), ## TODO: separate to use different caches
     objects = dataPrepObjects,
     paths = getPaths(),
+    .useCache = TRUE,
     loadOrder = c("Biomass_speciesData", "Biomass_borealDataPrep"),
     # outputs = dataPrepOutputs2001,
     .plots = NA,
-    useCloud = useCloudCache,
+    useCloud = FALSE,
     cloudFolderID = cloudCacheFolderID,
     userTags = c("dataPrep2001", studyAreaName)
   )

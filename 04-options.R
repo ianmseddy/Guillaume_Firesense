@@ -31,11 +31,10 @@ opts <- options(
   "reproducible.showSimilar" = TRUE,
   "reproducible.useCache" = TRUE,
   "reproducible.useCloud" = TRUE,
-  "reproducible.useGDAL" = FALSE, ## TODO: can't use true until system call bugs are resolved
-  "reproducible.useMemoise" = useMemoise,
+  "reproducible.useGDAL" =  TRUE, ## TODO: can't use true until system call bugs are resolved
+  "reproducible.useMemoise" = config::get("usememoise"),
   "reproducible.useNewDigestAlgorithm" = reproducibleAlgorithm,
   "reproducible.useRequire" = useRequire,
-  "spades.messagingNumCharsModule" = messagingNumCharsModule,
   "spades.moduleCodeChecks" = codeChecks,
   "spades.nThreads" = 4,
   "spades.recoveryMode" = FALSE,

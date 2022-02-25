@@ -1,12 +1,14 @@
 ## NOTE: 07a-dataPrep_2001.R needs to be run before this script
 
-source("05-google-ids.R")
-newGoogleIDs <- gdriveSims[["biomassMaps2011"]] == ""
+# source("05-google-ids.R")
+# newGoogleIDs <- gdriveSims[["biomassMaps2011"]] == ""
 
 dataPrepParams2011 <- dataPrepParams2001
-dataPrepParams2011$Biomass_speciesData$types <- "KNN2011"
+dataPrepParams2011$Biomass_speciesData$types <- "KNN"
+dataPrepParams2011$Biomass_speciesData$dataYear <- 2011
 dataPrepParams2011$Biomass_speciesData$.studyAreaName <- paste0(studyAreaName, 2011)
 dataPrepParams2011$Biomass_borealDataPrep$.studyAreaName <- paste0(studyAreaName, 2011)
+dataPrepParams2011$Biomass_borealDataPrep$dataYear <- 2011
 
 dataPrepOutputs2011 <- data.frame(
   objectName = c("cohortData",
@@ -43,7 +45,7 @@ if (isTRUE(usePrerun)) {
     clearSimEnv = TRUE,
     # outputs = dataPrepOutputs2011,
     .plots = "png",
-    useCloud = useCloudCache,
+    useCloud = FALSE,
     cloudFolderID = cloudCacheFolderID,
     userTags = c("dataPrep2011", studyAreaName)
   )
