@@ -7,8 +7,8 @@
 [submodule "modules/Biomass_speciesData"]
 	path = modules/Biomass_speciesData
 	url = git@github.com:PredictiveEcology/Biomass_speciesData.git
-[submodule "modules/studyArea"]
-	path = modules/studyArea
+[submodule "modules/Quebec_fires_preamble"]
+	path = modules/Quebec_fires_preamble
 	url = https://github.com/ianmseddy/studyArea.git
 [submodule "modules/fireSense_IgnitionFit"]
 	path = modules/fireSense_IgnitionFit
