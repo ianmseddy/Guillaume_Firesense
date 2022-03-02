@@ -10,3 +10,6 @@
 [submodule "modules/studyArea"]
 	path = modules/studyArea
 	url = https://github.com/ianmseddy/studyArea.git
+[submodule "fireSense_IgnitionFit"]
+	path = fireSense_IgnitionFit
+	url = https://github.com/PredictiveEcology/fireSense_IgnitionFit
