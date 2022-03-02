@@ -18,8 +18,7 @@ simOutPreamble <- Cache(simInitAndSpades,
                         modules = c("studyArea"), ## TODO: use your module name
                         objects = preambleObjects,
                         paths = preamblePaths,
-                        useCache = 'overwrite',
-                        #useCloud = useCloudCache,
-                        #cloudFolderID = cloudCacheFolderID,
-                        userTags = c("studyArea", studyAreaName))## TODO: use your module name
+
+                        userTags = c("studyArea", studyAreaName))
+## TODO: use your module name
 simOutPreamble$studyArea <- sf::as_Spatial(simOutPreamble$studyArea)

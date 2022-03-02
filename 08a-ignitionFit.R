@@ -27,7 +27,7 @@ ignitionFitParams <- list(
 )
 
 ignitionFitObjects <- list(
-  fireSense_ignitionCovariates = fSsimDataPrep[["fireSense_ignitionCovariates"]]"
+  fireSense_ignitionCovariates = fSsimDataPrep[["fireSense_ignitionCovariates"]]
 )
 
 fignitionOut <- file.path(Paths$outputPath, paste0("ignitionOut_", studyAreaName, ".qs"))
